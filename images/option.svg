@@ -1,4 +1,4 @@
-<svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
-<circle id="center" cx="35.5696" cy="36.3487" r="25" fill="black"/>
-<circle id="outline" cx="35.5696" cy="36.3487" r="34" stroke="black" stroke-width="3"/>
+<svg width="50" height="50" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg" class="option">
+	<circle id="center" cx="35.5696" cy="36.3487" r="25" fill="black"/>
+	<circle id="outline" cx="35.5696" cy="36.3487" r="34" stroke="black" stroke-width="3"/>
 </svg>

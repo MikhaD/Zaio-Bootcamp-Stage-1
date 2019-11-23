@@ -1,19 +1,90 @@
 * {
-	/* margin: 0px;
-	border: 0px;
-	padding: 0px; */
-
+	/* margin: 0px; */
+	/* border: 0px; */
+	/* padding: 0px; */
 	--foreground: #000000;
 	--foreground-2: #252525;
 	--bg-foreground: #C0C0C0;
 	--background: #FFFFFF;
 	--button: #000000;
-	--button-fg: #000000;
+	--button-fg: #ffffff;
+	--margin: 20px;
+	--indent: 40px;
+}
+
+body {
+	margin-left: var(--margin);
+	/* background-color: red; */
+}
+
+.text {
+	font-family: Verdana, sans-serif;
+	font-size: 16px;
+	color: var(--foreground);
+}
+
+.emphisized {
+	font-weight: 600;
+}
+
+.bgText {
+	font-weight: 400;
+	color: var(--bg-foreground);
+}
+
+.help {
+	font-size: 12px;
+	text-decoration: none;
+	color: var(--foreground-2);
+}
+
+.indented {
+	margin-left: var(--margin);
+	margin-right: var(--margin);
+}
+
+.spaced {
+	margin-bottom: var(--margin);
+}
+
+.option {
+	margin-top: 5px;
+	display: inline-block;
+	height: 50px;
+	outline: none;
+	stroke-dasharray: 100px;
+	stroke-dashoffset: 200px;
+}
+
+.outline {
+	color: var(--foreground);
+}
+
+.option:hover {
+	cursor: pointer;
+}
+
+.option:focus .outline {
+	stroke-width: 4;
+	animation: select-anim 0.5s ease-in-out forwards;
+}
+
+#theme {
+	float: right;
+	color: var(--foreground);
 }
 
 #title {
+	display: flex;
+	align-items: flex-start;
+	font-size: 3em;
 	font-family: Arial, Helvetica, sans-serif;
 	color: var(--foreground-2);
+}
+
+#stars {
+	display: inline-block;
+	margin-right: var(--indent);
 }
 
 #star1 {
@@ -21,6 +92,53 @@
 	fill: #ff0000;
 }
 
-.bgText {
-	color: var(--bg-foreground);
+#pricing span {
+	margin-right: var(--indent);
+}
+
+#price {
+	color: #D15164;
+	font-weight: 700;
+	font-size: 30px;
+}
+
+#count {
+	margin-right: var(--indent);
+	padding-left: 30px;
+	padding-right: 30px;
+	padding-top: 13px;
+	padding-bottom: 13px;
+	border-radius: 25px;
+	border: var(--foreground) solid 2px;
+}
+
+button {
+	cursor: pointer;
+	background-color: var(--button);
+	color: var(--button-fg);
+	border-style: none;
+	width: 300px;
+	height: 50px;
+	border-radius: 25px;
+	outline: none;
+}
+
+#details {
+	border-top: 1px var(--foreground) solid;
+}
+
+footer {
+	border-top: 1px var(--foreground) solid;
+	position: fixed;
+	left: 0px;
+	right: 0px;
+	bottom: 10px;
+	/* width: 100%; */
+}
+
+@keyframes select-anim{
+	to {
+		stroke-dasharray: 200px;
+		stroke-dashoffset: 0px;
+	}
 }

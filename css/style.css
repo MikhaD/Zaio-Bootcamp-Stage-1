@@ -17,6 +17,27 @@ body {
 	/* background-color: red; */
 }
 
+
+button {
+	cursor: pointer;
+	background-color: var(--button);
+	color: var(--button-fg);
+	border-style: none;
+	border: var(--foreground) solid 2px;
+	width: 300px;
+	height: 50px;
+	border-radius: 25px;
+	outline: none;
+}
+
+footer {
+	border-top: 1px var(--foreground) solid;
+	/* position: absolute; */
+	/* left: 0px; */
+	/* right: 0px; */
+	bottom: 10px;
+}
+
 .text {
 	font-family: Verdana, sans-serif;
 	font-size: 16px;
@@ -72,6 +93,7 @@ body {
 #theme {
 	float: right;
 	color: var(--foreground);
+	cursor: pointer;
 }
 
 #title {
@@ -112,28 +134,8 @@ body {
 	border: var(--foreground) solid 2px;
 }
 
-button {
-	cursor: pointer;
-	background-color: var(--button);
-	color: var(--button-fg);
-	border-style: none;
-	width: 300px;
-	height: 50px;
-	border-radius: 25px;
-	outline: none;
-}
-
 #details {
 	border-top: 1px var(--foreground) solid;
-}
-
-footer {
-	border-top: 1px var(--foreground) solid;
-	position: fixed;
-	left: 0px;
-	right: 0px;
-	bottom: 10px;
-	/* width: 100%; */
 }
 
 @keyframes select-anim{

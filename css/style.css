@@ -1,9 +1,13 @@
 * {
-	/* margin: 0px; */
-	/* border: 0px; */
-	/* padding: 0px; */
+	margin: 0px;
+	border: 0px;
+	padding: 0px;
+	--selected: #000;
+	--alternate-background: #252831;
+	--alternate-foreground: #ffffff;
+	--dropshadow: #0008;
 	--foreground: #000000;
-	--foreground-2: #252525;
+	--foreground-2: #3b3b3b;
 	--bg-foreground: #C0C0C0;
 	--background: #FFFFFF;
 	--button: #000000;
@@ -13,34 +17,17 @@
 }
 
 body {
-	margin-left: var(--margin);
-	/* background-color: red; */
-}
-
-
-button {
-	cursor: pointer;
-	background-color: var(--button);
-	color: var(--button-fg);
-	border-style: none;
-	border: var(--foreground) solid 2px;
-	width: 300px;
-	height: 50px;
-	border-radius: 25px;
-	outline: none;
+	background-image: url("../images/background.jpg");
 }
 
 footer {
 	border-top: 1px var(--foreground) solid;
-	/* position: absolute; */
-	/* left: 0px; */
-	/* right: 0px; */
-	bottom: 10px;
 }
 
 .text {
-	font-family: Verdana, sans-serif;
+	font-family: Segoe UI, Tahoma, Verdana, sans-serif;
 	font-size: 16px;
+	font-weight: 500;
 	color: var(--foreground);
 }
 
@@ -90,6 +77,19 @@ footer {
 	animation: select-anim 0.5s ease-in-out forwards;
 }
 
+.modal-header, .close {
+	color: var(--alternate-foreground);
+	background-color: var(--alternate-background);
+}
+
+#content {
+	height: 100%;
+	background-color: var(--background);
+	margin: 0 auto;
+	padding: var(--margin);
+	box-shadow: 2px 2px 5px var(--dropshadow);
+}
+
 #theme {
 	float: right;
 	color: var(--foreground);
@@ -97,31 +97,35 @@ footer {
 }
 
 #title {
-	display: flex;
-	align-items: flex-start;
-	font-size: 3em;
-	font-family: Arial, Helvetica, sans-serif;
+	margin: 0px;
+	margin-bottom: var(--margin);
+	font-size: 40px;
+	font-family: fantasy;
 	color: var(--foreground-2);
 }
 
 #stars {
+	padding: 0px;
 	display: inline-block;
 	margin-right: var(--indent);
 }
 
-#star1 {
-	color: #ff0000;
-	fill: #ff0000;
-}
-
-#pricing span {
-	margin-right: var(--indent);
+#stars img {
+	margin-right: 4px;
 }
 
 #price {
 	color: #D15164;
 	font-weight: 700;
 	font-size: 30px;
+}
+
+#laces {
+	fill: var(--selected);
+}
+
+#shoe {
+	fill: var(--foreground-2);
 }
 
 #count {
@@ -134,13 +138,40 @@ footer {
 	border: var(--foreground) solid 2px;
 }
 
+#actionButton {
+	cursor: pointer;
+	background-color: var(--selected);
+	color: var(--button-fg);
+	border-style: none;
+	font-weight: 900;
+	border: var(--foreground) solid 2px;
+	height: 50px;
+	border-radius: 25px;
+	outline: none;
+	-webkit-text-stroke: var(--foreground) 1px;
+}
+
 #details {
 	border-top: 1px var(--foreground) solid;
+}
+
+#needHelp {
+	cursor: pointer;
 }
 
 @keyframes select-anim{
 	to {
 		stroke-dasharray: 200px;
 		stroke-dashoffset: 0px;
+	}
+}
+
+@media (max-width: 768px) {
+    .text-center-sm {
+		text-align: center;
+	}
+
+	.indented {
+		margin-left: 0px;
 	}
 }

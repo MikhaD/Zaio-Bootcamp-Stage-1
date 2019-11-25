@@ -34,7 +34,7 @@
 			<div id="options" class="spaced">
 				<div class="text-center-sm">
 					<span class="text font-weight-bold">COLOR:</span>
-					<span class="text">red</span>
+					<span class="text colorText">red</span>
 				</div>
 				<div id="svgOptions" class="col-md-8 col-lg-9 d-inline-block">
 					<!-- the svg options are generated using js to avoid repetitive markup -->
@@ -47,8 +47,8 @@
 			<span class="text font-weight-bold">Size Guide</span>
 			<p class="text spaced font-weight-bold">Your Custom Fit</p>
 			<div class="spaced">
-				<span class="text col-md-2 col-xs-6 font-weight-bold" id="count">0</span>
-				<button id="actionButton" class="col-6 col-lg-5" data-toggle="modal" data-target="#quantity" tabindex="0">Add to Cart</button>
+				<span class="text col-md-2 col-xs-6 font-weight-bold counter" id="count">0</span>
+				<button id="actionButton" class="btn col-6 col-lg-5" data-toggle="modal" data-target="#quantity" tabindex="0">Add to Cart</button>
 			</div>
 			<div id="details">
 				<p class="text font-weight-bold">DETAILS</p>
@@ -67,8 +67,17 @@
 						<h6 class="modal-title">Please choose a quantity for the item you selected</h6>
 						<button class="close" type="button" data-dismiss="modal">×</button>
 					</div>
-					<div class="modal-body">
-						Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam perspiciatis aliquid officia tenetur sed? Tenetur magni, nostrum officiis soluta laborum quis explicabo est tempora, odit impedit sequi voluptates id rem?
+					<div id="quantityBody" class="modal-body">
+						<span class="text colorText font-weight-bold">red</span>
+						<div class="spaced">
+							<button class="text btn qButton">+</button>
+							<span id="count2" class="text counter">0</span>
+							<button class="text qButton btn">-</button>
+						</div>
+						<div>
+							<button id="continue" class="text btn proceedBtn">Continue</button>
+							<button id="cancel" class="text btn proceedBtn"  type="button" data-dismiss="modal">Cancel</button>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -83,9 +92,9 @@
 						<button class="close" type="button" data-dismiss="modal">×</button>
 					</div>
 					<div class="modal-body">
-						<p>Need help? No idea what hickies are? Thought we were selling love bites?</p>
-						<p>Worry no longer! HICKIES Originals are elastic shoe fasteners, nothing dodgy here.</p>
-						<p>If you have any further queries, feel free to email our harassed sales guy Fred at <a href="https://gmail.com">noonelovesfred@hickies.com<a>. </p>
+						<p class="text">Need help? No idea what hickies are? Thought we were selling love bites?</p>
+						<p class="text">Worry no longer! HICKIES Originals are elastic shoe fasteners, nothing dodgy here.</p>
+						<p class="text">If you have any further queries, feel free to email our harassed sales guy Fred at <a href="https://gmail.com">noonelovesfred@hickies.com<a>. </p>
 					</div>
 				</div>
 			</div>

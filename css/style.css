@@ -2,7 +2,7 @@
 	margin: 0px;
 	border: 0px;
 	padding: 0px;
-	--selected: #000;
+	--selected: #f00;
 	--alternate-background: #252831;
 	--alternate-foreground: #ffffff;
 	--dropshadow: #0008;
@@ -53,6 +53,29 @@ footer {
 
 .spaced {
 	margin-bottom: var(--margin);
+}
+
+.btn {
+	color: var(--button-fg);
+	background-color: var(--button);
+	border-radius: 30px;
+	font-weight: 900;
+	cursor: pointer;
+}
+
+.qButton {
+	width: 60px;
+	height: 60px;
+	font-size: 30px;
+	margin-left: 20px;
+	margin-right: 20px;
+}
+
+.proceedBtn {
+	width: 150px;
+	height: 40px;
+	margin: 10px;
+	border: 2px solid;
 }
 
 .option {
@@ -139,16 +162,34 @@ footer {
 }
 
 #actionButton {
-	cursor: pointer;
-	background-color: var(--selected);
-	color: var(--button-fg);
-	border-style: none;
-	font-weight: 900;
-	border: var(--foreground) solid 2px;
+	border: 2px solid var(--button);
 	height: 50px;
-	border-radius: 25px;
 	outline: none;
 	-webkit-text-stroke: var(--foreground) 1px;
+	transition: 0.5s;
+}
+
+#actionButton:hover {
+	background-color: var(--selected);
+}
+
+#quantityBody {
+	text-align: center;
+}
+
+#count2 {
+	font-size: 50px;
+	font-weight: 600;
+}
+
+#continue {
+	border-color: #118111;
+	background-color: #389c38;
+}
+
+#cancel {
+	border-color: #f00;
+	background-color: #ff2f2f;
 }
 
 #details {

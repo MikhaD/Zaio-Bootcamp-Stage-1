@@ -1,4 +1,4 @@
-const colors = ["red", "orangered", "orange", "yellow", "greenyellow", "chartreuse", "green", "seagreen", "darkcyan", "lightseagreen", "aqua", "deepskyblue", "dodgerblue", "blue", "blueviolet", "violet", "pink", "black"];
+const colors = ["red", "orangered", "darkorange", "orange", "yellow", "greenyellow", "chartreuse", "green", "seagreen", "darkcyan", "lightseagreen", "aqua", "deepskyblue", "dodgerblue", "blue", "blueviolet", "darkorchid", "darkmagenta", "violet", "pink", "black"];
 
 var root = document.documentElement;
 var selected;
@@ -13,7 +13,7 @@ for (let i = 0; i < 5; i++) {
 const svgOptions = document.querySelector("#svgOptions");
 colors.forEach(element => {
 	// tabindex allows the svgs to take focus
-	svgOptions.innerHTML += '<svg width="50" height="50" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg" class="option" id="'+element+'" tabindex="0">\n\t<circle class="center" cx="35.5696" cy="36.3487" r="25" fill="'+element+'"/>\n\t<circle class="outline" cx="35.5696" cy="36.3487" r="32" stroke="black" stroke-width="0"/>\n</svg>';
+	svgOptions.innerHTML += '<svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg" class="option" id="'+element+'" tabindex="0">\n\t<circle class="center" cx="35.5696" cy="36.3487" r="25" fill="'+element+'"/>\n\t<circle class="outline" cx="35.5696" cy="36.3487" r="32" stroke="black" stroke-width="0"/>\n</svg>';
 });
 
 var colorTexts = document.getElementsByClassName("colorText");
@@ -75,12 +75,24 @@ document.getElementById("cancel").addEventListener("click", () => {
 	}
 });
 
-document.getElementById("theme").addEventListener("click", () => {
-	let temp = getComputedStyle(root).getPropertyValue("--background");
-	root.style.setProperty("--background", getComputedStyle(root).getPropertyValue("--alternate-background"));
-	root.style.setProperty("--alternate-background", temp);
+// Toggle darkmode and ensure page maintains last selected theme on reload and revisit
+var darkMode = localStorage.getItem("darkmode");
 
-	temp = getComputedStyle(root).getPropertyValue("--foreground");
-	root.style.setProperty("--foreground", getComputedStyle(root).getPropertyValue("--alternate-foreground"));
-	root.style.setProperty("--alternate-foreground", temp);
+const enableDarkmode = () => {
+	document.body.classList.add("darkmode");
+	localStorage.setItem("darkmode", "true");
+	darkMode = "true";
+};
+
+if (darkMode === "true")
+	enableDarkmode();
+
+document.getElementById("theme").addEventListener("click", () => {
+	if (darkMode === "true") {
+		document.body.classList.remove("darkmode");
+		localStorage.setItem("darkmode", "false");
+		darkMode = "false";
+	}
+	else
+		enableDarkmode();
 });

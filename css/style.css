@@ -16,6 +16,13 @@
 	--indent: 40px;
 }
 
+.darkmode {
+	--background: #252831;
+	--foreground: #ffffff;
+	--alternate-background: #ffffff;
+	--alternate-foreground: #000000;
+}
+
 body {
 	background-image: url("../images/background.jpg");
 	background-size: cover;
@@ -69,7 +76,7 @@ body {
 .option {
 	margin-top: 5px;
 	display: inline-block;
-	height: 50px;
+	height: 48px;
 	outline: none;
 	stroke-dasharray: 100px;
 	stroke-dashoffset: 200px;
@@ -167,12 +174,12 @@ body {
 
 #continue {
 	border-color: #118111;
-	background-color: #389c38;
+	background-color: #4da04d;
 }
 
 #cancel {
 	border-color: #f00;
-	background-color: #ff2f2f;
+	background-color: #ff5353;
 }
 
 #needHelp { cursor: pointer; }
@@ -180,7 +187,7 @@ body {
 /* Selection animation for the round color options */
 @keyframes select-anim{
 	to {
-		stroke-dasharray: 200px;
+		stroke-dasharray: 201px;
 		stroke-dashoffset: 0px;
 	}
 }
@@ -193,15 +200,5 @@ body {
 
 	.indented {
 		margin-left: 0px;
-	}
-}
-
-/* Display the page in dark mode by default if the user's device is set to dark mode */
-@media (prefers-color-scheme: dark) {
-	:root {
-		--background: #252831;
-		--foreground: #ffffff;
-		--alternate-background: #ffffff;
-		--alternate-foreground: #000000;
 	}
 }

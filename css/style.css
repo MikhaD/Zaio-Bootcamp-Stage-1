@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Passion+One&display=swap');
+
 * {
 	margin: 0px;
 	border: 0px;
@@ -5,11 +7,10 @@
 }
 
 :root {
-	--background: #FFFFFF;
+	--background: #ffffff;
 	--foreground: #000000;
 	--alternate-background: #252831;
 	--alternate-foreground: #ffffff;
-	--button: #000000;
 	--selected: #f00;
 	--bg-foreground: #a7a7a7;
 	--indent: 40px;
@@ -17,6 +18,7 @@
 
 body {
 	background-image: url("../images/background.jpg");
+	background-size: cover;
 }
 
 .text {
@@ -26,9 +28,7 @@ body {
 	color: var(--foreground);
 }
 
-.emphisized {
-	font-weight: 600;
-}
+.emphisized { font-weight: 600; }
 
 .bgText {
 	font-weight: 400;
@@ -41,9 +41,7 @@ body {
 	color: var(--alternate-background);
 }
 
-.spaced {
-	margin-bottom: 20px;
-}
+.spaced { margin-bottom: 20px; }
 
 .btn {
 	color: var(--alternate-foreground);
@@ -77,13 +75,9 @@ body {
 	stroke-dashoffset: 200px;
 }
 
-.outline {
-	stroke: var(--foreground);
-}
+.outline { stroke: var(--foreground); }
 
-.option:hover {
-	cursor: pointer;
-}
+.option:hover { cursor: pointer; }
 
 .option:focus .outline {
 	stroke-width: 4;
@@ -118,13 +112,11 @@ body {
 	cursor: pointer;
 }
 
-#theme path {
-	fill: var(--foreground);
-}
+#theme path { fill: var(--foreground); }
 
 #title {
-	font-size: 40px;
-	font-family: fantasy;
+	font-size: 50px;
+	font-family: 'Passion One', cursive;
 	color: var(--alternate-background);
 }
 
@@ -134,9 +126,7 @@ body {
 	margin-right: var(--indent);
 }
 
-#stars img {
-	margin-right: 4px;
-}
+#stars img { margin-right: 4px; }
 
 #price {
 	color: #D15164;
@@ -144,13 +134,9 @@ body {
 	font-size: 30px;
 }
 
-#laces {
-	fill: var(--selected);
-}
+#laces { fill: var(--selected); }
 
-#shoe {
-	fill: var(--alternate-background);
-}
+#shoe { fill: var(--alternate-background); }
 
 #count {
 	margin-right: var(--indent);
@@ -170,13 +156,9 @@ body {
 	transition: 0.5s;
 }
 
-#actionButton:hover {
-	background-color: var(--selected);
-}
+#actionButton:hover { background-color: var(--selected); }
 
-#quantityBody {
-	text-align: center;
-}
+#quantityBody { text-align: center; }
 
 #count2 {
 	font-size: 50px;
@@ -193,10 +175,9 @@ body {
 	background-color: #ff2f2f;
 }
 
-#needHelp {
-	cursor: pointer;
-}
+#needHelp { cursor: pointer; }
 
+/* Selection animation for the round color options */
 @keyframes select-anim{
 	to {
 		stroke-dasharray: 200px;
@@ -204,6 +185,7 @@ body {
 	}
 }
 
+/* Center  */
 @media (max-width: 768px) {
     .text-center-sm {
 		text-align: center;
@@ -211,5 +193,15 @@ body {
 
 	.indented {
 		margin-left: 0px;
+	}
+}
+
+/* Display the page in dark mode by default if the user's device is set to dark mode */
+@media (prefers-color-scheme: dark) {
+	:root {
+		--background: #252831;
+		--foreground: #ffffff;
+		--alternate-background: #ffffff;
+		--alternate-foreground: #000000;
 	}
 }

@@ -59,7 +59,7 @@ document.getElementById("continue").addEventListener("click", () => {
 		counters[0].innerText = numSelected;
 		details.innerHTML = "";
 		for (let i = 0; i < numSelected; ++i) {
-			details.innerHTML += '<svg width="30" height="30" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">\n\t<circle class="center" cx="35.5696" cy="36.3487" r="25" fill="'+selected+'"/>\n</svg>';
+			details.innerHTML += '<svg width="30" height="30" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">\n\t<circle cx="35.5696" cy="36.3487" r="25" fill="'+selected+'"/>\n</svg>';
 		}
 	}
 });

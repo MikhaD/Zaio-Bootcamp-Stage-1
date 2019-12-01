@@ -28,12 +28,12 @@
 				<div id="stars">
 					<!-- the stars are added using js to avoid repetitive markup -->
 				</div>
-				<span class="text bgText col-xs-6">1 293 reviews</span>
+				<span id="reviews" class="text bgText col-xs-6"></span>
 			</div>
 			<div class="spaced" id="pricing">
-				<span class="text col-md-4" id="price">$14.99</span>
-				<span class="text bgText col-md-4">$17.99</span>
-				<span class="text bgText col-md-4"><strong>25% OFF</strong></span>
+				<span id="price" class="text col-md-4"></span>
+				<span id="oldPrice" class="text bgText col-md-4"></span>
+				<span id="discount" class="text bgText col-md-4 font-weight-bold"></span>
 			</div>
 			<p class="text spaced text-center-sm font-weight-bold">ONLINE EXCLUSIVE</p>
 			<div id="options" class="spaced">
@@ -75,22 +75,46 @@
 						<h5 class="modal-title">Choose a quantity for the selected item</h5>
 						<button class="close" type="button" data-dismiss="modal">×</button>
 					</div>
-					<div id="quantityBody" class="modal-body">
-						<span class="text colorText font-weight-bold">red</span>
+					<div class="modal-body">
+						<span class="text colorText subHeading">red</span>
 						<div class="spaced">
-							<button id="plus" class="text btn qButton">+</button>
+							<button id="plus" class="text btn quantityBtn">&#43</button>
 							<span id="count2" class="text counter">0</span>
-							<button id="minus" class="text qButton btn">-</button>
+							<button id="minus" class="text btn quantityBtn">&#8722</button>
 						</div>
-						<div>
-							<button id="continue" class="text btn proceedBtn" type="button" data-dismiss="modal">Continue</button>
-							<button id="cancel" class="text btn proceedBtn"  type="button" data-dismiss="modal">Cancel</button>
+						<div class="checkoutBtns">
+							<button id="continue" class="text btn proceedBtn continue" type="button" data-dismiss="modal">Continue</button>
+							<button id="cancelBtn1" class="text btn proceedBtn cancel" type="button" data-dismiss="modal">Cancel</button>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 		<!-- /Number of items Modal -->		
+		<!-- Checkout Modal -->
+		<div id="checkout" class="modal fade">
+			<div class="modal-dialog modal-dialog-centered">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">Your Cart</h5>
+						<button class="close" type="button" data-dismiss="modal">×</button>
+					</div>
+					<div class="modal-body">
+						<span class="subHeading">Order:</span>
+						<span class="subHeading">Price:</span>
+						<div id="orders">
+							<!-- Div to be targeted by js and filled with order details -->
+						</div>
+						<div class="checkoutBtns">
+							<button class="btn proceedBtn checkOutBtn continue" type="button" data-dismiss="modal">Add</button>
+							<button id="checkoutBtn" class="btn proceedBtn checkOutBtn" type="button" data-dismiss="modal">Checkout</button>
+							<button id="cancelBtn2" class="btn proceedBtn checkOutBtn cancel" type="button" data-dismiss="modal">Cancel</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- /Checkout Modal -->		
 		<!-- Need Help modal -->
 		<div id="help" class="modal fade">
 			<div class="modal-dialog modal-dialog-centered">

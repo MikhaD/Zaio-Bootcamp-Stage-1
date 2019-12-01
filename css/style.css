@@ -49,10 +49,8 @@ body {
 }
 
 .subHeading {
-	font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
 	font-size: 20px;
 	font-weight: 700;
-	color: var(--foreground);
 }
 
 .foregroundBox {
@@ -85,6 +83,8 @@ body {
 .checkoutBtns {
 	display: flex;
 	justify-content: space-around;
+	grid-column-start: 1;
+	grid-column-end: 3;
 }
 
 .quantityBtn {
@@ -97,9 +97,8 @@ body {
 }
 
 .proceedBtn {
-	width: 150px;
+	width: 130px;
 	height: 50px;
-	margin: 10px;
 	border: 2px solid;
 }
 
@@ -111,6 +110,11 @@ body {
 .cancel {
 	border-color: #f00;
 	background-color: #ff5353;
+}
+
+.disabled {
+	border-color: #535353;
+	background-color: #7e7e7e;
 }
 
 .option {
@@ -135,13 +139,22 @@ body {
 	animation: select-anim 0.5s ease-in-out forwards;
 }
 
-.selection {
-	margin-left: 5px;
-}
+.selected { margin-left: 5px; }
 
 .bottom {
 	padding-top: 10px;
 	border-top: 1px var(--foreground) solid;
+}
+
+.hoverBox {
+	padding: 10px;
+	box-shadow: 1px 1px 4px #0008;
+}
+
+.multipliedPrice {
+	display: flex;
+	justify-content: left;
+	align-items: center;
 }
 
 .modal-header, .close {
@@ -153,8 +166,15 @@ body {
 	color: var(--foreground);
 	background-color: var(--background);
 	text-align: center;
+	padding: 15px;
 	padding-top: 0px;
-	
+}
+
+.grid {
+	display: grid;
+	grid-template-columns: 5fr 2fr;
+	gap: 10px;
+	text-align: left;
 }
 
 #content {
@@ -232,6 +252,11 @@ body {
 #count2 {
 	font-size: 50px;
 	font-weight: 600;
+}
+
+#orders {
+	grid-column-start: 1;
+	grid-column-end: 3;
 }
 
 #checkoutBtn {

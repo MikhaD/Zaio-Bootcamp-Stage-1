@@ -99,14 +99,17 @@
 						<h5 class="modal-title">Your Cart</h5>
 						<button class="close" type="button" data-dismiss="modal">×</button>
 					</div>
-					<div class="modal-body">
-						<span class="subHeading">Order:</span>
-						<span class="subHeading">Price:</span>
-						<div id="orders">
-							<!-- Div to be targeted by js and filled with order details -->
-						</div>
+					<div class="modal-body grid">
+						<span class="text subHeading">Order:</span>
+						<span class="text subHeading">Price:</span>
+								<div id="orders" class="grid">
+									<!-- Div to be targeted by js and filled with order details -->
+								</div>
+						<span class="text subHeading">Total Price:</span>
+						<span id="total" class="text subHeading"></span>
+
 						<div class="checkoutBtns">
-							<button class="btn proceedBtn checkOutBtn continue" type="button" data-dismiss="modal">Add</button>
+							<button id="add" class="btn proceedBtn checkOutBtn continue" type="button" data-dismiss="modal">Add</button>
 							<button id="checkoutBtn" class="btn proceedBtn checkOutBtn" type="button" data-dismiss="modal">Checkout</button>
 							<button id="cancelBtn2" class="btn proceedBtn checkOutBtn cancel" type="button" data-dismiss="modal">Cancel</button>
 						</div>

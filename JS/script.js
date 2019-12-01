@@ -141,25 +141,35 @@ class Random {
 const colors = ["red", "orangered", "darkorange", "orange", "yellow", "greenyellow", "chartreuse", "green", "seagreen", "darkcyan", "lightseagreen", "deepskyblue", "aqua", "dodgerblue", "blue", "blueviolet", "darkorchid", "darkmagenta", "violet", "pink", "black"];
 
 const root = document.documentElement;
-// The id of the currently selected color
+/** The currently selected color */
 var selected;
-// The span elements that display the name of the color
+/** The span elements that display the name of the color */
 var colorTexts = document.getElementsByClassName("colorText");
-// The quantity of the color selected
+/** The quantity of the color selected */
 var numSelected = 0;
+/** The maximum of one color that a person can buy */
+const maxPurchase = 20
 // The colors for the star rating
 const emptyStarColor = "#444";
-const fullStarColor = "#ffe600";
-// The number of stars in the star rating
+const fullStarColor = "#ffd900";
+/** The number of stars in the star rating */
 const numberOfStars = 5;
-// The star elements
+/** The star elements */
 var stars = document.getElementsByClassName("star");
-// The number of reviews the page has had
+/** The number of reviews the page has had */
 var reviews = 1293;
-// A random number generator for the prices of the items which will stay consistant
+/** A random number generator for the prices of the items which will stay consistant */
 const prices = new Random(8, 14, 25);
-// The amount to discount the prices by
+/** The amount to discount the prices by */
 const discount = 1.25;
+/** The price of the currently selected quantity */
+var subTotal = 0;
+/** The sum of the prices of all the selected quantities */
+var total = 0;
+/** The number of orders they have made */
+var totalOrders = 0;
+/** Maximum number of orders permitted per session */
+var maxOrders = 5;
 
 //#########################################################
 //##################   FUNCTIONALITY   ####################
@@ -257,7 +267,11 @@ for (let i = 0; i < stars.length; ++i) {
 	}
 	stars[i].addEventListener("click", clickStar);
 }
-//##################################   SET DISCOUNT   ################################
+//####################################   DISCOUNT   ##################################
+function applyDiscount(price, discount) {
+	return Math.floor(price/discount)+0.99
+}
+
 document.getElementById("discount").innerText = `${(discount-1)*100}% OFF`
 //#################################   COLOR OPTIONS   ################################
 // Function to add to buttons. Named function used instead of anon to save memory
@@ -272,7 +286,7 @@ function onOption(event) {
 	}
 	
 	document.getElementById("oldPrice").innerText = `$${price}`;
-	document.getElementById("price").innerText = `$${Math.floor(price/discount)+0.99}`;
+	document.getElementById("price").innerText = `$${applyDiscount(price, discount)}`;
 
 	root.style.setProperty("--selected", selected);
 	for (let item of colorTexts) {
@@ -295,7 +309,7 @@ colors.forEach(element => {
 //#############################   BUTTON FUNCTIONALITY   #############################
 // Increment number of items selected when the plus is pressed
 document.getElementById("plus").addEventListener("click", () => {
-	if (numSelected < 50) {
+	if (numSelected < maxPurchase) {
 		++numSelected;
 		document.getElementsByClassName("counter")[1].innerText = numSelected;
 	}
@@ -310,21 +324,91 @@ document.getElementById("minus").addEventListener("click", () => {
 // Generate details section when continue is pressed and at least one is selected
 document.getElementById("continue").addEventListener("click", () => {
 	if (numSelected > 0) {
+		let details = document.getElementById("details");
+		let price = document.getElementById(selected).getAttribute("price");
 		document.getElementById("actionButton").innerText = "Checkout Now";
 		document.getElementById("actionButton").setAttribute("data-target", "#checkout");
 		document.getElementsByClassName("counter")[0].innerText = numSelected;
-		document.getElementById("details").innerHTML = "";
 		for (let i = 0; i < numSelected; ++i) {
-			new Svg([new Circle(20, selected, 0, "black", {})], true, {"class":"selection"}).addTo(document.getElementById("details"));
+			new Svg([new Circle(20, selected, 0, "black", {})], true, {"class":"selected"}).addTo(details);
+		}
+		details.appendChild(document.createElement("br"));
+
+		subTotal = Number((numSelected*applyDiscount(price, discount)).toFixed(2));
+		total += subTotal;
+		// Add text with the total of the currently selected items to the details section
+		let subTotalEl = document.createElement("span");
+		subTotalEl.classList.add("text", "d-block", "spaced");
+		subTotalEl.innerText = `Sub Total: $${subTotal.toFixed(2)}`
+		details.appendChild(subTotalEl);
+		
+		let selection = document.createElement("div");
+		selection.classList.add("hoverBox", "selection");
+		let itemColor = document.createElement("span");
+		itemColor.classList.add("text", "d-block");
+		itemColor.appendChild(document.createTextNode(selected));
+		selection.appendChild(itemColor);
+		document.getElementById("orders").appendChild(selection);
+
+		let mPrice = document.createElement("div");
+		mPrice.classList.add("hoverBox", "multipliedPrice");
+		let mPriceText = document.createElement("span");
+		mPriceText.classList.add("text");
+		mPriceText.appendChild(document.createTextNode(`${numSelected} × $${applyDiscount(price, discount)}`));
+		mPrice.appendChild(mPriceText);
+		document.getElementById("orders").appendChild(mPrice);
+
+		document.getElementById("total").innerText = `$${total.toFixed(2)}`;
+		++totalOrders;
+
+		if (totalOrders == maxOrders) {
+			let add = document.getElementById("add");
+			add.classList.add("disabled");
+			add.disabled = true;
 		}
 	}
 });
-// Remove details when cancel is pressed
-document.getElementById("cancelBtn1").addEventListener("click", () => {
+// Reset the number of items selected:
+function resetNumSelected() {
 	if (numSelected > 0) {
+		document.getElementsByClassName("counter")[0].innerText = 0;
 		document.getElementsByClassName("counter")[1].innerText = 0;
 		numSelected = 0;
 	}
+}
+// Allow the user to add another color order when add is pressed
+document.getElementById("add").addEventListener("click", () => {
+	if (totalOrders < maxOrders) {
+		let ab = document.getElementById("actionButton");
+		ab.innerText = "Add to cart";
+		ab.setAttribute("data-target", "#quantity");
+		resetNumSelected();
+	}
+});
+
+// Set counters to 0 when cancel is pressed
+document.getElementById("cancelBtn1").addEventListener("click", () => {
+	resetNumSelected();
+	if (totalOrders > 0) {
+		let ab = document.getElementById("actionButton");
+		ab.innerText = "Checkout Now";
+		ab.setAttribute("data-target", "#checkout");
+	}
+});
+// Set counters to 0 and 
+document.getElementById("cancelBtn2").addEventListener("click", () => {
+	resetNumSelected();
+	let ab = document.getElementById("actionButton");
+	ab.innerText = "Add to cart";
+	ab.setAttribute("data-target", "#quantity");
+	document.getElementById("details").innerHTML = "";
+	document.getElementById("orders").innerHTML = "";
+	let add = document.getElementById("add");
+	add.classList.remove("disabled");
+	add.disabled = false;
+	totalOrders = 0;
+	subTotal = 0;
+	total = 0;
 });
 // Refresh page when checkout is pressed
 document.getElementById("checkoutBtn").addEventListener("click", () => {
@@ -332,14 +416,5 @@ document.getElementById("checkoutBtn").addEventListener("click", () => {
 	document.body.classList.add("thanks");
 	setTimeout(() => {
 		window.location.reload(false);
-	}, 3000);
-});
-// Set counters to 0 and 
-document.getElementById("cancelBtn2").addEventListener("click", () => {
-	document.getElementsByClassName("counter")[0].innerText = 0;
-	document.getElementById("actionButton").innerText = "Add to cart";
-	document.getElementById("actionButton").setAttribute("data-target", "#quantity");
-	details.innerHTML = "";
-	document.getElementById("orders").innerHTML = "";
-	// Set price to 0
+	}, 2000);
 });

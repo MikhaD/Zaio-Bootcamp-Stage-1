@@ -277,14 +277,18 @@ document.getElementById("discount").innerText = `${(discount-1)*100}% OFF`
 // Function to add to buttons. Named function used instead of anon to save memory
 function onOption(event) {
 	if (event.target.getAttribute("class") === "option") {
-		selected = event.target.children[0].getAttribute("fill");
+		var on = event.target.children[0].getAttribute("fill");
 		var price = event.target.getAttribute("price");
 	}
 	else {
-		selected = event.target.getAttribute("fill");
+		var on = event.target.getAttribute("fill");
 		var price = event.target.parentNode.getAttribute("price")
 	}
-	
+	// Make sure the ring around a color option dissapears if it loses focus to another color option
+	if (on != selected && selected != null) {
+		document.getElementById(selected).querySelector(".outline").removeAttribute("style");
+	}
+	selected = on;
 	document.getElementById("oldPrice").innerText = `$${price}`;
 	document.getElementById("price").innerText = `$${applyDiscount(price, discount)}`;
 
@@ -293,19 +297,27 @@ function onOption(event) {
 		item.innerText = selected;
 	}
 }
+// Ensure that if a color option loses focus to something other than another color option, the ring around it persists
+function focusOff(event) {
+	if (event.target.id == selected) {
+		let currentSelection = document.getElementById(selected).querySelector(".outline").style;
+		currentSelection["stroke-width"] = 3;
+		currentSelection["stroke-dasharray"] = 116;
+		currentSelection["stroke-dashoffset"] = 0;
+	}
+}
 // Add color options
 colors.forEach(element => {
 	// tabindex allows the svgs to take focus
 	new Svg([new Circle(30, element, 0, "none", {"class":"center"}), new Circle(40, "none", 3, "black", {"class":"outline"})], true, {"class":"option", "tabindex":0, "id": element, "price":prices.nextInt()+0.99}).addTo(document.querySelector("#svgOptions"));
 });
-// Select first option
-onOption({"target":document.getElementById(colors[0])});
-document.getElementById(colors[0]).focus();
-var selected = colors[0];
 // Add event listeners to color options
 colors.forEach(element => {
-	document.getElementById(element).addEventListener("click", onOption);
+	document.getElementById(element).addEventListener("focus", onOption);
+	document.getElementById(element).addEventListener("focusout", focusOff);
 });
+// Select first option
+document.getElementById(colors[0]).focus();
 //#############################   BUTTON FUNCTIONALITY   #############################
 // Increment number of items selected when the plus is pressed
 document.getElementById("plus").addEventListener("click", () => {
@@ -343,7 +355,7 @@ document.getElementById("continue").addEventListener("click", () => {
 		details.appendChild(subTotalEl);
 		
 		let selection = document.createElement("div");
-		selection.classList.add("hoverBox", "selection");
+		selection.classList.add("hoverBox");
 		let itemColor = document.createElement("span");
 		itemColor.classList.add("text", "d-block");
 		itemColor.appendChild(document.createTextNode(selected));
@@ -351,7 +363,7 @@ document.getElementById("continue").addEventListener("click", () => {
 		document.getElementById("orders").appendChild(selection);
 
 		let mPrice = document.createElement("div");
-		mPrice.classList.add("hoverBox", "multipliedPrice");
+		mPrice.classList.add("hoverBox");
 		let mPriceText = document.createElement("span");
 		mPriceText.classList.add("text");
 		mPriceText.appendChild(document.createTextNode(`${numSelected} × $${applyDiscount(price, discount)}`));

@@ -138,7 +138,7 @@ class Random {
 //####################   VARIABLES   ######################
 //#########################################################
 
-const colors = ["red", "orangered", "darkorange", "orange", "yellow", "greenyellow", "chartreuse", "green", "seagreen", "darkcyan", "lightseagreen", "deepskyblue", "aqua", "dodgerblue", "blue", "blueviolet", "darkorchid", "darkmagenta", "violet", "pink", "black"];
+const colors = ["red", "orangered", "darkorange", "orange", "yellow", "greenyellow", "chartreuse", "green", "seagreen", "darkcyan", "lightseagreen", "deepskyblue", "aqua", "dodgerblue", "blue", "rebeccapurple", "blueviolet", "darkorchid", "darkmagenta", "violet", "black"];
 
 const root = document.documentElement;
 /** The currently selected color */
